@@ -12,7 +12,7 @@ Tenative syllabus:
 |    <br>Tuesday    |    <br>Building linear models in TMB    |    <br>TMB/C++ syntax, workflow, factors, debugging, factors in TMB [Cole]    |    <br>Maximum likelihood estimation; Fit LM in R by hand, using lm() and in   TMB [Cole]    |    <br>Exploring Beverton-Holt TMB model<br>   <br>     |
 |    <br>Wednesday    |    <br>GLMs    |    <br>GLM theory [To   do] [Noble]    |    <br>Estimating uncertainty: standard errors, Delta method [Noble]<br>   <br>likelihood profile, bootstrapping <br>   <br>     |    <br>Poisson GLM<br>   <br>Project time    |
 |    <br>Thursday    |    <br>Random effects in TMB     |    <br>Types of mixed effects models; Marginal maximum likelihood [Noble]    |    <br>Project time    |    <br>VBG for pooled samples and individual ones;<br>   <br>Hierarchical VBG; <br>   <br>     |
-|    <br>Friday    |    <br>Beyond GLMMs    |    <br>sdmTMB and   glmmTMB? [To do] [Cole?]    |    <br>Project time    |    <br>Project presentations    |
+|    <br>Friday    |    <br>Beyond GLMMs    |    <br>Advanced TMB features: mapping, REML, simulation, functions <br> sdmTMB and   glmmTMB? [To do] [Cole?]    |    <br>Project time    |    <br>Project presentations    |
 
 
 
