@@ -1,3 +1,20 @@
+
+## Poisson likelihood by hand
+## pmf=exp(-lambda)*lambda^k/k!
+k <- 4
+lambda <- 5.5
+nll <- function(lambda) -log(exp(-lambda)*lambda^k/factorial(k))
+nll(5.5)
+-dpois(k, lambda, log=TRUE)
+
+lambda <- seq(0,15, len=50)
+plot(lambda, nll(lambda))
+
+opt <- nlminb(start=10, nll)
+opt$par                                # value that gives minimum
+opt$objective                          # the minimum
+
+
 ## Exercise: Add logsigma as parameter
 library(TMB)
 compile("tmb_models/bevholt2.cpp")
@@ -17,7 +34,7 @@ summary(rep, 'report')
 compile("tmb_models/bevholt3.cpp")
 dyn.load(dynlib("tmb_models/bevholt3"))
 dat <- read.table("tmb_models/bevholt.dat", header=TRUE)
-data <- list(SSB=dat$ssb,logR=dat$logR, 
+data <- list(SSB=dat$ssb,logR=dat$logR,
              SSB_pred=seq(20000, 300000, len=1000))
 parameters <- list(logA=0, logB=0, logsigma=0)
 
