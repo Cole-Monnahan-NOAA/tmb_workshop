@@ -95,3 +95,10 @@ obj <- MakeADFun(data=list(x=x,y=y), random=c("intercept", "slope"),
                  DLL='linmod')
 test <- nlminb(start=-2, obj$fn)
 exp(test$par)
+
+
+## Rosenbrock model
+f <- function(x) (1-x[1])^2+50000*(x[2]-x[1]^2)^2
+opt <- nlminb(start=c(-1,.21), objective=f)
+opt$par
+f(opt$par)
