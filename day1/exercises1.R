@@ -5,6 +5,7 @@ f <- function(x) sum((c(.113, -.24, .583)-x)^2)
 fprime <- function(x, h=1e-5) (f(x+h)-f(x))/h
 f(1)
 fprime(1)
+
 x <- seq(-1,1, len=100)
 y <- g <- numeric(length(x))
 for(i in 1:length(x)){
@@ -39,7 +40,6 @@ opt$par
 obj$fn(opt$par)
 obj$gr(opt$par)
 
-
 ## Demo using TMB derivative
 compile("TMB_models/polynomial.cpp")
 dyn.load(dynlib("TMB_models/polynomial"))
@@ -60,17 +60,5 @@ plot(x,y, type='l', lwd=2, main='Height f(x)', ylab='fn')
 plot(x,g, type='l', lwd=2, main='Derivative f\'(x)', ylab='gr')
 abline(h=0)
 #dev.off()
-
-## Exercise 2 solution: Poisson likelihood
-k <- 4
-loglike <- function(lambda) k*log(lambda)-lambda-log(factorial(k))
-loglike(5.5)
-dpois(x=4, lambda=5.5, log=TRUE)
-## lgamma is better because it is more stable numerically
-lgamma(k+1)
-log(factorial(k))
-ll <- seq(0.1, 15, len=1000)
-plot(ll, -loglike(ll), type='l', lwd=2)
-
 
 
