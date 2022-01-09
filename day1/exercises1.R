@@ -1,13 +1,11 @@
 library(TMB)
 
-
+## Function and derivative in R
 f <- function(x) sum((c(.113, -.24, .583)-x)^2)
 fprime <- function(x, h=1e-5) (f(x+h)-f(x))/h
 f(1)
 fprime(1)
-
 x <- seq(-1,1, len=100)
-
 y <- g <- numeric(length(x))
 for(i in 1:length(x)){
   y[i] <- f(x[i])
@@ -18,9 +16,7 @@ plot(x,y, type='l', lwd=2, main='Height f(x)', ylab='fn')
 plot(x,g, type='l', lwd=2, main='Derivative f\'(x)', ylab='gr')
 abline(h=0)
 
-plot(x, y1, type='b')
-
-
+## Same function in TMB
 compile("TMB_models/simple.cpp")
 dyn.load(dynlib("TMB_models/simple"))
 obj <- MakeADFun(data=list(), parameters=list(x=1), DLL='simple')
@@ -32,6 +28,11 @@ opt <- nlminb(start=1, objective=f, gradient=fprime)
 opt$par
 f(opt$par)
 fprime(opt$par)
+
+plot(x,y, type='l', lwd=2, main='Height f(x)', ylab='fn')
+points(x=opt$par, y=f(opt$par)
+
+
 ## use TMB
 opt <- nlminb(obj$par, objective=obj$fn, gradient=obj$gr)
 opt$par
