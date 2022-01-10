@@ -1,12 +1,16 @@
-
-
 ## Step 1: plot f(x)
 f <- function(x) 2*x-4*log(x)-5*log(x)
-x <- seq(1,10, len=50)
+x <- seq(1,10, len=500)
 plot(x,f(x), type='b')
 
+## Step 2
 fprime <- function(x) (f(x+.001)-f(x))/.001
-plot(x,fprime(x), type='b')
+plot(x,fprime(x), type='l')
+abline(h=0)
+
+opt <- nlminb(start=6, objective=f, gradient=fprime)
+str(opt)
+fprime(opt$par)
 
 library(TMB)
 compile('tmb_models/lab1.cpp')
