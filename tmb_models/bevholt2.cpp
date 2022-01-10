@@ -10,11 +10,12 @@ Type objective_function<Type>::operator() ()
 
   PARAMETER(logA);
   PARAMETER(logB);
+  PARAMETER(logsigma);
 
     // We use log transforms to keep parameters positive
   Type B=exp(logB);
-  Type sigma=0.4; // fixed for now
- 
+  Type sigma=exp(logsigma);
+  
   // Loop through each observed SSB and predict logR.
   int N=SSB.size();
   vector<Type> pred(N); // predictions for each row

@@ -5,6 +5,8 @@ x <- list(a=5L, b=5, c=rnorm(5), d='hello',
           e=factor(c('low', 'high')))
 str(x)
 
+### Maximum likelihood section
+
 ## Probability of coin flips
 p <- 0.5
 x <- 0:50
