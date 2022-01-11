@@ -13,10 +13,11 @@ sum(probability)
 plot(x, probability, type='b')
 
 ## Likelihood of coin flips
-p <- seq(0,1, len=50)
+p <- seq(0,1, len=500)
 likelihood <- choose(50,45)*p^45*(1-p)^5
-plot(p, likelihood, type='b')
-
+plot(p, likelihood, type='l')
+sum(likelihood)
+plot(p, -log(likelihood), type='l')
 
 (.9^45*(1-.9)^5)/(.5^45*(1-.5)^5)
 
@@ -60,6 +61,7 @@ fit.R <- nlminb(start=pars, objective=nll)
 fit.tmb <- nlminb(start=pars, objective=obj$fn, gradient=obj$gr)
 coef(fit1)
 (mle <- fit.R$par)
+fit.R$par
 ## Should be close to zero:
 obj$gr(fit.tmb$par)
 
@@ -73,6 +75,7 @@ abline(a=mle[1], b=mle[2], col='red', lty=3, lwd=2)
 ## What about the variance estimate?
 summary(lm(y~x))
 exp(fit.tmb$par[3])
+obj$report(fit.tmb$par)
 ## The sigma parameters do not match because lm() uses REML. We can
 ## recreate that by integrating out the other fixed effects except the
 ## variance term.

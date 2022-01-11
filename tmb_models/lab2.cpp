@@ -1,4 +1,3 @@
-
 #include <TMB.hpp>
 template<class Type>
 Type objective_function<Type>::operator() ()
@@ -12,8 +11,9 @@ Type objective_function<Type>::operator() ()
   PARAMETER(beta1);
   PARAMETER(beta2);
   // predict y
-  vector<Type> ypred=beta0+beta1*x1+beta2*x2;
+  vector<Type> ypred= beta0 + x1*beta1 + x2*beta2;
+  
   // calculate negative log likelihood
-  Type nll= -dnorm(ypred,y,Type(2.5),true).sum();
+  Type nll= -dnorm(ypred, y, Type(0.5), true).sum();
   return nll;
 }

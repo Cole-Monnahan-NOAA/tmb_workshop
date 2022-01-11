@@ -14,10 +14,10 @@ Type objective_function<Type>::operator() ()
   PARAMETER(logsigma);
   
   Type sigma=exp(logsigma);
+  
   // predict y
   vector<Type> ypred=beta0+beta1*x1+beta2*x2;
   // calculate negative log likelihood
   Type nll= -dnorm(ypred,y,sigma,true).sum();
-  REPORT(sigma);
   return nll;
 }

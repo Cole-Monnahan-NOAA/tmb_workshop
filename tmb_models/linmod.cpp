@@ -13,5 +13,6 @@ Type objective_function<Type>::operator() ()
   vector<Type> mu(y.size());
   mu=intercept+slope*x;
   nll=-sum(dnorm(y,mu,sd,true));
+  REPORT(sd);
   return nll;
 }

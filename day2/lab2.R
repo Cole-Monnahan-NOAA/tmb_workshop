@@ -1,5 +1,6 @@
 #### Linear models with TMB
 library(TMB)
+flags <- "-Wno-ignored-attributes -O2 -mfpmath=sse -msse2 -mstackrealign"
 
 ## We will simulate a data set
 set.seed(121431)
@@ -20,38 +21,32 @@ par(mfrow=c(1,2))
 plot(x1,y)
 plot(x2,y)
 
-
 ## Fit it in TMB
-compile('tmb_models/lab2.cpp')
+compile('tmb_models/lab2.cpp', flags=flags)
 dyn.load(dynlib('tmb_models/lab2'))
 obj <- MakeADFun(data=list(x1=x1, x2=x2, y=y),
                  ## Initial values
-                 parameters=list(beta0=0, beta1=0, beta2=2),
+                 parameters=list(beta0=1, beta1=2, beta2=-1),
                  DLL='lab2')
-obj$fn()
-obj$gr()
 opt <- nlminb(obj$par, obj$fn, obj$gr)
 opt$par
 
 
 ## Add estimation of sigma
-compile('tmb_models/lab2a.cpp')
+compile('tmb_models/lab2a.cpp', flags=flags)
 dyn.load(dynlib('tmb_models/lab2a'))
 obj2a <- MakeADFun(data=list(x1=x1, x2=x2, y=y),
                  ## Initial values
-                 parameters=list(beta0=0, beta1=0, beta2=2, logsigma=0),
+                 parameters=list(beta0=0, beta1=0, beta2=2, logsigma=3),
                  DLL='lab2a')
-obj2a$fn()
-obj2a$gr()
 opt2a <- nlminb(obj2a$par, obj2a$fn, obj2a$gr)
 opt2a$par
 obj2a$report(opt2a$par)
-
+sigma <- exp(opt2a$par[4])
 
 ## simulation test
 compile('tmb_models/lab2a.cpp')
 dyn.load(dynlib('tmb_models/lab2a'))
-
 Nsim <- 5000
 ## Empty matrix to store results
 mles <- matrix(data=NA, nrow=Nsim, ncol=4)
