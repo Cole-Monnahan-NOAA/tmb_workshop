@@ -1,8 +1,7 @@
 
 ## Example from the glmmTMB vignette
-library("glmmTMB")
-library("bbmle") ## for AICtab
-## cosmetic
+library(glmmTMB)
+library(bbmle) ## for AICtab
 Owls <- transform(Owls,
                   Nest=reorder(Nest,NegPerChick),
                   NCalls=SiblingNegotiation,
@@ -21,7 +20,9 @@ AICtab(fit_zipoisson,fit_zinbinom,fit_zinbinom1,fit_zinbinom1_bs)
 
 ## Notice the TMB objects and optimizer results are the same
 str(fit_zipoisson$obj)
+fit_zipoisson$obj$env$random
 str(fit_zipoisson$fit)
+str(fit_zipoisson$sdr)
 
 
 ## demo example of sdmTMB
