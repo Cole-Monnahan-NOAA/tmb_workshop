@@ -20,6 +20,34 @@ Some material was modified with permission from a course by Jim Thorson at
 https://github.com/James-Thorson/2016_Spatio-temporal_models. 
 
 
+
  
- 
- 
+
+## Ideas for next time
+
+#### Data sets
+
+* Just have one data set that we keep analyzing over and over
+  * Has fixed effects
+  * Has random effects
+  * Has a slope
+* First day - Start with just a mean and normal likelihood
+* Second day - add the slope
+* Third day - add random effects and fit with LME
+* Fourth day - add GLM 
+
+#### Advantages of recording
+
+* Was good for presenting ideas and could be used in the future 
+
+#### Uses of channels
+
+* Could create multiple rooms for groups of 2 
+* Use them in the labs so that 2 students can share a room
+* Professores can move among rooms and check in on the students working on the labs and projects
+
+#### Topics on which to focus an entire class
+
+* CPUE analysis 
+* glmmTMB and sdmTMB?
+
