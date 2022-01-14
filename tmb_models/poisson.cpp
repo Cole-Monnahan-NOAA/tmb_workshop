@@ -15,14 +15,16 @@ Type objective_function<Type>::operator() ()
   vector<Type> pred(n);
   for(int i=0; i<n; i++){
     // Expected counts are just the random effect for that site
-    pred(i)=D(sites(i)-1);
+    pred(i)=D(sites(i));
   }
-
   // Likelihood calculations
   Type nll=0;
   // The data component
   nll -= dpois(C,pred, true).sum();
+  REPORT(nll); // just data
   // The random effects hyperdistribution
   nll -= dnorm(D, mu, sigma, true).sum();
+  REPORT(pred);
+  REPORT(sites)
   return nll;
 }
